@@ -81,13 +81,12 @@ if( link != null )
     		    pb.css( 'width', percent + "%" );
     		    if( percent >= 100 )
     		    {
-                        $.timer
+                        setTimeout
                         ( function()
                           {
     			      pb.addClass('progress-bar-success');
                           }
                         , 500
-                        , true
                         );
     		    }
     		    pb.html( percent + "% rendered" );
