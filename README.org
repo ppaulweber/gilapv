@@ -10,7 +10,7 @@ Currently the plugin just fetches the complete PDF file and renders it via conti
 
 ** Installation
 
-In order to use this plugin, the current installation of your GitLab CE version has to be patched appropriately. The folder =sys= includes a patched version of the =_download.html.haml= file, which is located in your GitLab CE installation under the following path.
+In order to use this plugin, the current installation of your GitLab CE version has to be patched appropriately. The folder =patch= includes a patched version of the =_download.html.haml= file, which is located in your GitLab CE installation under the following path.
 
 #+begin_src
 <GITLAB-ROOT>/embedded/service/gitlab-rails/app/views/projects/blob/
