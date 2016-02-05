@@ -16,13 +16,11 @@ In order to use this plugin, the current installation of your GitLab CE version 
 <GITLAB-ROOT>/embedded/service/gitlab-rails/app/views/projects/blob/
 #+end_src
 
-Just overwrite the file in the installation path with the provided patch file from this repository, and the plugin is (after a restart of your GitLab CE service -- use the =gitlab-ctl restart= command) installed.
-
-Another idea is just to overwrite the file from the current master branch version directly with a tool like =curl=.
+Just overwrite the file in the installation path with the provided patch file from this repository, and the plugin is (after a restart of your GitLab CE service -- use the =gitlab-ctl restart= command) installed. The best way to do so is just to overwrite the file from the =stable= branch via the tool =curl=.
 
 #+begin_src
 $ cd <GITLAB-ROOT>/embedded/service/gitlab-rails/app/views/projects/blob/
-$ curl https://rawgit.com/ppaulweber/gilapv/master/js/gilapv.js > _download.html.haml
+$ curl https://rawgit.com/ppaulweber/gilapv/stable/patch/_download.html.haml > _download.html.haml
 #+end_src
 
 Be aware, this deletes (overwrites) the installed version from your GitLab CE installation! If you want to switch back, maybe you make a backup of the =_download.html.haml= file first.
