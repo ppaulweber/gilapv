@@ -1,0 +1,43 @@
+
+* gilapv -- GIt LAb Pdf Viewer
+
+This project contains a PDF viewer plugin for the GitLab CE version.
+
+** Features
+
+Currently the plugin just fetches the complete PDF file and renders it via continues HTML5 =<canvas>= tags into the =.file-content= =<div>= container.
+
+
+** Installation
+
+In order to use this plugin, the current installation of your GitLab CE version has to be patched appropriately. The folder =sys= includes a patched version of the =_download.html.haml= file, which is located in your GitLab CE installation under the following path.
+
+#+begin_src
+<GITLAB-ROOT>/embedded/service/gitlab-rails/app/views/projects/blob/
+#+end_src
+
+Just overwrite the file in the installation path with the provided patch file from this repository, and the plugin is (after a restart of your GitLab CE service -- use the =gitlab-ctl restart= command) installed.
+
+Another idea is just to overwrite the file from the current master branch version directly with a tool like =curl=.
+
+#+begin_src
+$ cd <GITLAB-ROOT>/embedded/service/gitlab-rails/app/views/projects/blob/
+$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/master/js/gilapv.js > _download.html.haml
+#+end_src
+
+Be aware, this deletes (overwrites) the installed version from your GitLab CE installation! If you want to switch back, maybe you make a backup of the =_download.html.haml= file first.
+
+
+** Dependencies
+
+All necessary dependencies are included in the repository located in the =lib= folder. All the used libraries have their own license. Included libraries are:
+
+- jQuery (https://jquery.com/)
+- Bootstrap (http://getbootstrap.com/)
+- PDF.js (https://mozilla.github.io/pdf.js/)
+
+
+** License
+
+This project is released under the NCSA open source license. 
+Please take a look in the LICENSE.txt file of under http://opensource.org/licenses/NCSA for further information.
