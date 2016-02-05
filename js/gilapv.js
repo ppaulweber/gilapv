@@ -49,8 +49,6 @@ if( link != null )
     $gitlab_pdf.append( $progress )
     $progress.append( $progress_bar );
     
-    $('.')
-    
     PDFJS.getDocument(url).then
     ( function getPdf(pdf) 
       {
