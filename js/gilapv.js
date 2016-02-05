@@ -44,10 +44,17 @@ if( link != null )
     $progress_bar.attr( "aria-valuenow", "1" );
     $progress_bar.attr( "aria-valuemin", "0" ); 
     $progress_bar.attr( "aria-valuemax", "100" );
+    $progress_bar.html( '0% rendered' )
     
-    $('.file-content').append( $gitlab_pdf );
+    var fc = $('.file-content');
+    fc.append( $gitlab_pdf );
     $gitlab_pdf.append( $progress )
     $progress.append( $progress_bar );
+
+    fc.css( 'padding', '10px' );
+    
+    var dl = $('h4[class$="light"]:first');
+    dl.css( 'text-align', 'right' );
     
     PDFJS.getDocument(url).then
     ( function getPdf(pdf) 
@@ -74,9 +81,16 @@ if( link != null )
     		    pb.css( 'width', percent + "%" );
     		    if( percent >= 100 )
     		    {
-    			pb.addClass('progress-bar-success');
+                        $.timer
+                        ( function()
+                          {
+    			      pb.addClass('progress-bar-success');
+                          }
+                        , 500
+                        , true
+                        );
     		    }
-    		    pb.html( percent );
+    		    pb.html( percent + "% rendered" );
     		}
     	      );
     	  }
