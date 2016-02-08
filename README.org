@@ -1,7 +1,7 @@
 
-* gilapv -- GitLab Community Edition PDF Viewer Plugin
+* gilapv -- GitLab (CE) PDF Viewer Plugin
 
-This project contains a PDF viewer plugin for the GitLab CE version.
+This project contains a PDF viewer plugin for the GitLab Community Edition (CE) version.
 
 ** Features
 

@@ -124,9 +124,9 @@ function main()
 		( $('<br>')
 		).append
 		( $('<div>', {class : 'row'}).append
-		  ( $('<div>', {class : 'col-sm-6'}).html( 'Revision' )
+		  ( $('<div>', {class : 'col-sm-4'}).html( 'Revision:' )
 		  ).append
-		  ( $('<div>', {class : 'col-sm-6'}).append
+		  ( $('<div>', {class : 'col-sm-8'}).append
 		    ( $('<a>', {class : 'btn btn-info btn-sm', style : 'width: 100%;', href : json_branch._links.html}).html
 		      ( json_branch.commit.sha.substring(0, 7)
 		      )
@@ -139,7 +139,6 @@ function main()
 	  );
       }
     );    
-    
     
     
     var $gilapv_pdf_file  = $('<div>', { id : 'gilapv-pdf-file' });
