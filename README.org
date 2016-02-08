@@ -1,5 +1,5 @@
 
-* gilapv -- GIt LAb Pdf Viewer
+* gilapv -- GitLab Community Edition PDF Viewer Plugin
 
 This project contains a PDF viewer plugin for the GitLab CE version.
 
@@ -20,7 +20,7 @@ Just overwrite the file in the installation path with the provided patch file fr
 
 #+begin_src
 $ cd <GITLAB-ROOT>/embedded/service/gitlab-rails/app/views/projects/blob/
-$ curl https://rawgit.com/ppaulweber/gilapv/stable/patch/_download.html.haml > _download.html.haml
+$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/stable/patch/_download.html.haml > _download.html.haml
 #+end_src
 
 Be aware, this deletes (overwrites) the installed version from your GitLab CE installation! If you want to switch back, maybe you make a backup of the =_download.html.haml= file first.
