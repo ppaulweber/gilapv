@@ -223,8 +223,6 @@ function main()
 	{
 	    renderPage( pages[num], num );
 	}
-
-        console.log( 'refreshed!' );
     }
     
     PDFJS.disableWorker = true;
