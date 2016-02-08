@@ -5,7 +5,7 @@ This project contains a PDF viewer plugin for the GitLab CE version.
 
 ** Features
 
-Currently the plugin just fetches the complete PDF file and renders it via continues HTML5 =<canvas>= tags into the =.file-content= =<div>= container.
+Currently the plugin just fetches the complete PDF file and renders it via continues HTML5 =<canvas>= elements into the =.file-content= =<div>= container.
 
 
 ** Installation
