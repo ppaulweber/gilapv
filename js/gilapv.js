@@ -65,7 +65,15 @@ function main()
     {
 	return;
     }
-
+    
+    $(document).ready
+    ( function()
+      {
+	  $('[data-toggle="popover"]').popover( { html : true } );
+      }
+    );
+    
+    
     var url = window.location.origin + link.replace( '/blob/', '/raw/' );
     
     var fc = $('.file-content');
@@ -82,9 +90,60 @@ function main()
 
     var $gilapv  = $('<div>', { id : 'gilapv' });
     fc.append( $gilapv );
+
+    var $gilapv_tools  = $('<div>', { id : 'gilapv-tools', style : 'margin-top: 20px; margin-bottom: 10px;' });
+    $gilapv.append( $gilapv_tools );
+
+    var $tool_refresh = $('<button>', { type : 'button', class : 'btn btn-dark btn-sm', style : '' });
+    $gilapv_tools.append( $tool_refresh );
+    var $tool_refresh_view = $('<span>', { class : 'fa fa-refresh' });
+    $tool_refresh.append( $tool_refresh_view );
     
-    var $gilapv_container  = $('<div>', { id : 'gilapv-container' });
-    $gilapv.append( $gilapv_container );
+    
+    var $tool_info = $('<a>', { class : 'btn btn-info btn-sm', style : 'float: right;' });
+    $gilapv_tools.append( $tool_info );
+    var $tool_info_view = $('<span>', { class : 'fa fa-info-circle' });
+    $tool_info.append( $tool_info_view );
+    $tool_info.attr( 'data-toggle',    'popover' );
+    $tool_info.attr( 'data-placement', 'left' );
+    $tool_info.attr( 'title',          'Plugin Information' );
+    $tool_info.attr( 'data-content',   'unable to load' );
+    
+    var $tool_info_data = $('<div>');
+    $.getJSON
+    ( "https://api.github.com/repos/ppaulweber/gilapv"
+    , function( json_repo ) 
+      {
+	  $.getJSON
+	  ( "https://api.github.com/repos/ppaulweber/gilapv/branches/stable"
+	  , function( json_branch ) 
+	    {
+		$tool_info_data.append
+		( $('<div>').html( $('<b>').html( json_repo.description )) 
+		).append
+		( $('<br>')
+		).append
+		( $('<div>', {class : 'row'}).append
+		  ( $('<div>', {class : 'col-sm-6'}).html( 'Revision' )
+		  ).append
+		  ( $('<div>', {class : 'col-sm-6'}).append
+		    ( $('<a>', {class : 'btn btn-info btn-sm', style : 'width: 100%;', href : json_branch._links.html}).html
+		      ( json_branch.commit.sha.substring(0, 7)
+		      )
+		    )
+		  )
+		);
+		
+		$tool_info.attr( 'data-content',  $tool_info_data.html() );
+	    }
+	  );
+      }
+    );    
+    
+    
+    
+    var $gilapv_pdf_file  = $('<div>', { id : 'gilapv-pdf-file' });
+    $gilapv.append( $gilapv_pdf_file );
     
     function calcView(page)
     {
@@ -104,6 +163,9 @@ function main()
     
     function renderPage(page,num) 
     {
+	var canvas_id = 'gilapv-' + num + '-page';
+	var tlayer_id = 'gilapv-' + num + '-text';
+        
 	var viewport = calcView(page);
     	var canvas = document.createElement('canvas');
     	var ctx = canvas.getContext('2d');
@@ -111,22 +173,48 @@ function main()
 	{ canvasContext: ctx
 	, viewport: viewport
 	};
+	canvas.setAttribute( 'id', canvas_id );
 	canvas.height = viewport.height;
     	canvas.width  = viewport.width;
-	
-	var canvas_id = 'gilapv-page-' + num;
-	canvas.setAttribute( 'id', canvas_id );
-	
-	page.render(renderContext);
-	
+        
 	if( first )
 	{
-	    $gilapv_container.append( canvas );
-	}
+	    $gilapv_pdf_file.append( canvas );
+
+            var $tlayer = $('<div>', { id : tlayer_id, class : 'textLayer' });
+            $gilapv_pdf_file.append( $tlayer );
+        }
 	else
 	{
 	    $( '#' + canvas_id ).replaceWith( canvas );
+            $( '#' + tlayer_id ).empty();
 	}
+        
+        var offset = $( '#' + canvas_id ).offset();
+        var $textLayerDiv = $( '#' + tlayer_id  ).css
+        ( { height : viewport.height+'px'
+          , width : viewport.width+'px'
+          , top : offset.top
+          ,  left : offset.left
+          }
+        );
+        
+        page.render(renderContext);
+        
+        page.getTextContent().then
+        ( function( text )
+          {
+              var textLayer = new TextLayerBuilder
+              ( { textLayerDiv : $textLayerDiv.get(0)
+                , pageIndex : num - 1
+                , viewport : viewport
+                }
+              );
+
+              textLayer.setTextContent( text );
+              textLayer.render();
+          }
+        );
     }
     
     function refresh()
@@ -135,6 +223,8 @@ function main()
 	{
 	    renderPage( pages[num], num );
 	}
+
+        console.log( 'refreshed!' );
     }
     
     PDFJS.disableWorker = true;
@@ -183,8 +273,14 @@ function main()
 	    {
 		refresh();
 	    }
-	  , 250
+	  , 125
 	  );
+      }
+    );
+
+    $tool_refresh.click
+    ( function()
+      {
       }
     );
 }

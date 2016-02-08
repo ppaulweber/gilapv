@@ -1,4 +1,4 @@
-.file-content.blob_file.blob-no-preview{ style: 'padding: 10px;' }
+.file-content.blob_file.blob-no-preview{ style: 'padding: 10px; background-color: #ccc; border: 1px solid #aaa;' }
   .light{ style: 'margin-bottom: 10px;' }
     = link_to namespace_project_raw_path(@project.namespace, @project, @id) do
       %i.fa.fa-download Download (#{number_to_human_size blob_size(blob)})
