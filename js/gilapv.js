@@ -485,7 +485,7 @@ function main()
           switch( ( event.keyCode ? event.keyCode : event.which) )
           {
               case 37:  // <--
-              case 112: // 'p'
+              case 98:  // 'b'
               {
                   $tool_page_previous.click();
                   break;
@@ -517,6 +517,11 @@ function main()
                   // use to directly download the PDF file
                   break;
               }
+              // case 102: // 'f' (fullscreen)
+              // {
+              //     $tool_fullscreen.click();
+              //     break;
+              // }
               default:
               {
                   //console.log( event );
