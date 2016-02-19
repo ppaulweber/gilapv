@@ -126,12 +126,10 @@ function main()
     var file_code = $('.file-content.code');
     if( file_code[0] != null )
     {
-	if( file_url.substr(-4) != ".svg" ) 
-	{
-	    return;
-	}
-	
 	file_code.hide();
+        
+	if( file_url.substr(-4) == ".svg" ) 
+	{	
 	
 	$('#gilapv').append
 	( $('<div>', { id : 'gilapv-svg-viewer', style : 'text-align: center;' }).append
@@ -196,17 +194,17 @@ function main()
 	      );
 	  }
 	);
+        
+        }
     }
     
     var file_blob = $('.file-content.blob_file.blob-no-preview');
     if( file_blob[0] != null )
     {
-	if( file_url.substr(-4) != ".pdf" ) 
-	{
-	    return;
-	}
-	
 	file_blob.hide();
+
+	if( file_url.substr(-4) == ".pdf" ) 
+	{
 	
 	var selected_page = 1;
 	var pages = new Array();
@@ -595,6 +593,8 @@ function main()
 	      );
 	  }
 	);
+        
+        }
     }
     
     $('#gilapv-actions'
