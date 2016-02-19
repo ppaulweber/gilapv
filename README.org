@@ -64,7 +64,6 @@ Included libraries are:
 ** License
 
 This project is released under the NCSA open source license. 
-Please take a look in the LICENSE.txt file or 
-under http://opensource.org/licenses/NCSA for further information.
-
-#+include: LICENSE.txt
+Please take a look in the 
+[[https://github.com/ppaulweber/gilapv/blob/master/LICENSE.txt][LICENSE.txt]] 
+file or under http://opensource.org/licenses/NCSA for further information.
