@@ -1,5 +1,5 @@
 
-* gilapv -- GitLab Project-File Viewer Plugin
+* gilapv -- GitLab Projectfile Viewer Plugin
 
 This project contains a viewer plugin for the GitLab Community Edition (CE) version, 
 which enables to view and display different kind of content types. It started out as
