@@ -1,41 +1,70 @@
 
-* gilapv -- GitLab (CE) PDF Viewer Plugin
+* gilapv -- GitLab Project-File Viewer Plugin
 
-This project contains a PDF viewer plugin for the GitLab Community Edition (CE) version.
+This project contains a viewer plugin for the GitLab Community Edition (CE) version, 
+which enables to view and display different kind of content types. It started out as
+a plain PDF viewer. Currently it supports rendering for PDF and SVG files, which is
+not covered in the plain GitLab CE installation.
 
 ** Features
 
-Currently the plugin just fetches the complete PDF file and renders it via continues HTML5 =<canvas>= elements into the =.file-content= =<div>= container.
+*** PDF Files 
+
+The plugin just fetches the complete PDF file in the background and renders one page 
+after another via HTML5 =<canvas>= elements into =.file-holder= =<div>= container.
+
+*** SVG Files
+
+The plugin adds a =<div>= element where in AJAX style the raw SVG file is loaded and 
+appended into the =<div>= element. The browser recognizes loaded the =<svg>= tag and 
+renders the image appropriately.
 
 
 ** Installation
 
-In order to use this plugin, the current installation of your GitLab CE version has to be patched appropriately. The folder =patch= includes a patched version of the =_download.html.haml= file, which is located in your GitLab CE installation under the following path.
+In order to use this plugin, the current installation of your GitLab CE version has 
+to be patched appropriately. The folder =patch= includes patched versions of 
+the =_blob.html.haml= and =_download.html.haml= file. Those files are located in 
+your GitLab CE installation under the following path.
 
 #+begin_src
 <GITLAB-ROOT>/embedded/service/gitlab-rails/app/views/projects/blob/
 #+end_src
 
-Just overwrite the file in the installation path with the provided patch file from this repository, and the plugin is (after a restart of your GitLab CE service -- use the =gitlab-ctl restart= command) installed. The best way to do so is just to overwrite the file from the =stable= branch via the tool =curl=.
+Just overwrite the files in the installation path with the provided patch files 
+from this repository, and the plugin is installed after a restart of your GitLab CE 
+service via the =gitlab-ctl restart= command. 
+
+The following code snippet shows the patch process via the usage of the command line tool =curl=.
 
 #+begin_src
 $ cd <GITLAB-ROOT>/embedded/service/gitlab-rails/app/views/projects/blob/
-$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/stable/patch/_download.html.haml > _download.html.haml
+$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/master/patch/_blob.html.haml > _blob.html.haml
+$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/master/patch/_download.html.haml > _download.html.haml
 #+end_src
 
-Be aware, this deletes (overwrites) the installed version from your GitLab CE installation! If you want to switch back, maybe you make a backup of the =_download.html.haml= file first.
+Be aware, this deletes (overwrites) the installed version from your GitLab CE 
+installation! If you want to switch back, maybe you make a backup of 
+the =.haml= files first.
 
 
 ** Dependencies
 
-All necessary dependencies are included in the repository located in the =lib= folder. All the used libraries have their own license. Included libraries are:
+All necessary dependencies are included in the repository located in 
+the =lib= folder. All the used libraries have their own license. 
+Included libraries are:
 
-- jQuery (https://jquery.com/)
-- Bootstrap (http://getbootstrap.com/)
-- PDF.js (https://mozilla.github.io/pdf.js/)
+- jQuery (https://jquery.com) [loaded by GitLab]
+- Bootstrap (http://getbootstrap.com) [loaded by GitLab]
+- PDF.js (https://mozilla.github.io/pdf.js) 
+- AngularJS (https://angularjs.org)
+- RaphaelJS (http://raphaeljs.com) 
 
 
 ** License
 
 This project is released under the NCSA open source license. 
-Please take a look in the LICENSE.txt file of under http://opensource.org/licenses/NCSA for further information.
+Please take a look in the LICENSE.txt file or 
+under http://opensource.org/licenses/NCSA for further information.
+
+#+include: LICENSE.txt
