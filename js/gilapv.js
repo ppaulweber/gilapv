@@ -485,12 +485,6 @@ function main()
 	);
 	
 	
-	$(document
-	).on
-	( 'webkitfullscreenchange mozfullscreenchange msfullscreenchange fullscreenchange'
-	, fullscreen_handler 
-	);
-	
 	var fullscreen_last_status = false;
 	function fullscreen_handler( action )
 	{
@@ -576,6 +570,12 @@ function main()
 	  }
 	);
 	
+	
+	$(document
+	).on
+	( 'webkitfullscreenchange mozfullscreenchange msfullscreenchange fullscreenchange'
+	, fullscreen_handler 
+	);
 	
 	
 	$(window).resize
