@@ -620,7 +620,7 @@ function main()
     , function( json_repo ) 
       {
 	  $.getJSON
-	  ( "https://api.github.com/repos/ppaulweber/gilapv/branches/master"
+	  ( "https://api.github.com/repos/ppaulweber/gilapv/branches/gitlab-ce-9.0.5"
 	  , function( json_branch ) 
 	    {
 		$tool_info_data.append
