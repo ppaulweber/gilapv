@@ -53,7 +53,7 @@ function main()
 	return;
     }
     
-    var file_title  = $('.file-title');
+    var file_title  = $('.js-file-title');
     if( file_title[0] == null )
     {
 	console.log( 'gilapv: error: could not find "file-title" element!' );
@@ -620,7 +620,7 @@ function main()
     , function( json_repo ) 
       {
 	  $.getJSON
-	  ( "https://api.github.com/repos/ppaulweber/gilapv/branches/gitlab-ce-9.0.5"
+	  ( "https://api.github.com/repos/ppaulweber/gilapv/branches/master"
 	  , function( json_branch ) 
 	    {
 		$tool_info_data.append
