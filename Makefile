@@ -29,6 +29,9 @@ ifndef TO
 TO = master
 endif
 
+DIR=ppaulweber/gilapv
+DEV=https://raw.githubusercontent.com/$(DIR)
+CDN=https://cdn.rawgit.com/$(DIR)
 
 default: help
 
@@ -37,19 +40,14 @@ help:
 
 links:
 	echo "$(FROM) --> $(TO)"
-	(for i in `grep -r README.org ./src/* -e gilapv/$(FROM) -l`; do \
+	(for i in `grep -r README.org ./src/* -e $(FROM) -l`; do \
 		echo $$i; \
-		sed -i "s/gilapv\/$(FROM)/gilapv\/$(TO)/g" $$i; \
+		sed -i "s/$(FROM)/$(TO)/g" $$i; \
 	done)
 	(for i in `grep -r README.org ./src/* -e gilapv/branches/$(FROM) -l`; do \
 		echo $$i; \
 		sed -i "s/gilapv\/branches\/$(FROM)/gilapv\/branches\/$(TO)/g" $$i; \
 	done)
 
-
-
-update-to-branch:
-	$(MAKE) FROM=master TO=`git branch | grep -e "* " | sed "s/* //g"` links
-
-update-from-branch:
-	$(MAKE) TO=master links
+release:
+	$(MAKE) FROM=$(DEV)/master TO=$(CDN)/`git branch | grep -e "* " | sed "s/* //g"` links
