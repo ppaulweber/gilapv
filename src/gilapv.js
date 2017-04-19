@@ -30,11 +30,11 @@ function main()
 	error = error + 1;
     }
     
-    if(typeof( $.fn.popover ) == 'undefined')
-    {
-	console.log( 'gilapv: error: could not find Bootstrap!' );
-	error = error + 1;
-    }
+    // if(typeof( $.fn.popover ) == 'undefined')
+    // {
+    // 	console.log( 'gilapv: error: could not find Bootstrap!' );
+    // 	error = error + 1;
+    // }
     
     if( typeof( PDFJS ) == 'undefined' )
     {
@@ -620,7 +620,7 @@ function main()
     , function( json_repo ) 
       {
 	  $.getJSON
-	  ( "https://api.github.com/repos/ppaulweber/gilapv/branches/master"
+	  ( "https://api.github.com/repos/ppaulweber/gilapv/branches/gitlab-ce-9.0.5"
 	  , function( json_branch ) 
 	    {
 		$tool_info_data.append
