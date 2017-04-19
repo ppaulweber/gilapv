@@ -23,7 +23,7 @@ renders the image appropriately.
 ** Installation
 
 In order to use this plugin, the current installation of your GitLab CE version has 
-to be patched appropriately. The folder =patch= includes patched versions of 
+to be patched appropriately. The folder =src/haml= includes patched versions of 
 the =_blob.html.haml= and =_download.html.haml= file. Those files are located in 
 your GitLab CE installation under the following path.
 
@@ -39,8 +39,8 @@ The following code snippet shows the patch process via the usage of the command 
 
 #+begin_src
 $ cd <GITLAB-ROOT>/embedded/service/gitlab-rails/app/views/projects/blob/
-$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/gitlab-ce-9.0.5/patch/_blob.html.haml > _blob.html.haml
-$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/gitlab-ce-9.0.5/patch/_download.html.haml > _download.html.haml
+$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/gitlab-ce-9.0.5/src/haml/_blob.html.haml > _blob.html.haml
+$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/gitlab-ce-9.0.5/src/haml/_download.html.haml > _download.html.haml
 #+end_src
 
 Be aware, this deletes (overwrites) the installed version from your GitLab CE 
