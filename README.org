@@ -39,8 +39,8 @@ The following code snippet shows the patch process via the usage of the command 
 
 #+begin_src
 $ cd <GITLAB-ROOT>/embedded/service/gitlab-rails/app/views/projects/blob/
-$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/gitlab-ce-9.0.5/src/haml/_blob.html.haml > _blob.html.haml
-$ curl https://raw.githubusercontent.com/ppaulweber/gilapv/gitlab-ce-9.0.5/src/haml/_download.html.haml > _download.html.haml
+$ curl https://cdn.rawgit.com/ppaulweber/gilapv/gitlab-ce-9.0.5/src/haml/_blob.html.haml > _blob.html.haml
+$ curl https://cdn.rawgit.com/ppaulweber/gilapv/gitlab-ce-9.0.5/src/haml/_download.html.haml > _download.html.haml
 #+end_src
 
 Be aware, this deletes (overwrites) the installed version from your GitLab CE 
